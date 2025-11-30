@@ -12,15 +12,12 @@ class Movies extends Model
     protected $fillable = [
         'title',
         'description',
-        'release_year',
-        'image',
+        'release_date',
+        'images',
         'genre_id',
     ];
 
-    public function genre()
-    {
-        return $this->belongsTo(Genres::class, 'genre_id');
-    }
-
-
+    protected $casts = [
+        'images' => 'array',
+    ];
 }

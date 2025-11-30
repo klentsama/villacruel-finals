@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tv_series', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('genre_id')->constrained()->cascadeOnDelete();
+            // $table->foreignId('genre_id')->constrained()->cascadeOnDelete();
             $table->string('title');
             $table->text('description')->nullable();
             $table->date('release_date')->nullable();
