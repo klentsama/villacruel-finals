@@ -14,15 +14,6 @@ class Genres extends Model
         'description',
     ];
 
-    public function movies()
-    {
-        return $this->hasMany(Movies::class, 'genre_id');
-    }
-
-    public function tvSeries()
-    {
-        return $this->hasMany(TvSeries::class, 'genre_id');
-    }
 
 
 }

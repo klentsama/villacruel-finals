@@ -12,7 +12,9 @@ use BackedEnum;
 use Dom\Text;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkAction;
+use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DatePicker;
@@ -32,6 +34,7 @@ use Filament\Tables\Table;
 class MoviesResource extends Resource
 {
     protected static ?string $model = Movies::class;
+    protected static ?int $navigationSort = 1;
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-film';
 
@@ -80,11 +83,11 @@ class MoviesResource extends Resource
             ]),
         ])
 
-        ->bulkActions([
-            BulkAction::make('delete')
-                ->requiresConfirmation()
-                ->color('danger'),
-        ]); 
+        ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ]),
+            ]);
 
         
     }

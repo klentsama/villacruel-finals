@@ -30,7 +30,9 @@ use Illuminate\Notifications\Action;
 
 class TvSeriesResource extends Resource
 {
-    protected static ?string $model = TvSeries::class;
+    protected static ?string $modelLabel = 'TV Series';
+
+    protected static ?int $navigationSort = 2;
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-tv';
 

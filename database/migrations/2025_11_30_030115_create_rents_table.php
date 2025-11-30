@@ -13,12 +13,18 @@ return new class extends Migration
     {
         Schema::create('rents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete(); 
-            $table->foreignId('movie_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('tv_series_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('movie_id')->nullable()->constrained('movies')->cascadeOnDelete();
+            $table->foreignId('tv_series_id')->nullable()->constrained('tv_series')->cascadeOnDelete();
+            $table->string('name');
+            $table->string('type');
+            $table->json('images')->nullable();
+            $table->longText('description')->nullable();
+            $table->decimal('price', 10, 2);
+            $table->boolean('is_active')->default(true);
+            $table->boolean('is_popular')->default(false);
+            $table->boolean('in_stock')->default(true);
+            $table->boolean('on_sale')->default(true);
             $table->enum('status', ['rented', 'returned', 'overdue'])->default('rented');
-            $table->date('rented_at');
-            $table->date('due_at');
             $table->timestamps();
         });
     }
@@ -28,6 +34,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rents');
+        Schema::table('rents', function (Blueprint $table) {
+            // Drop the foreign key constraint first, then the column
+            $table->dropForeign(['genre_id']);
+            $table->dropColumn('genre_id');
+        });
     }
 };

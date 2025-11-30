@@ -27,6 +27,8 @@ class GenresResource extends Resource
 {
     protected static ?string $model = Genres::class;
 
+    protected static ?int $navigationSort = 3;
+
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-puzzle-piece';
 
     public static function form(Schema $schema): Schema

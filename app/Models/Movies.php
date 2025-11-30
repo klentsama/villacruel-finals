@@ -20,4 +20,9 @@ class Movies extends Model
     protected $casts = [
         'images' => 'array',
     ];
+
+    public function genre()
+    {
+        return $this->belongsTo(Genres::class);
+    }
 }
