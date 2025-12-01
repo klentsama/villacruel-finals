@@ -25,12 +25,18 @@ class RentItem extends Model
 
     public function movie()
     {
-        return $this->belongsTo(Movies::class, 'item_id');
+        return $this->belongsTo(Movies::class, 'movie_id');
     }
 
     public function tvSeries()
     {
-        return $this->belongsTo(TvSeries::class, 'item_id');
+        return $this->belongsTo(TvSeries::class, 'tv_series_id');
+    }
+
+
+    public function item()
+    {
+        return $this->belongsTo(Rent::class, 'rent_id');
     }
 
 

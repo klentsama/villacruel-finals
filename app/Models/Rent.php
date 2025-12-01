@@ -12,6 +12,7 @@ class Rent extends Model
     protected $fillable = [
         'user_id',
         'movie_id',
+        'renter_id',
         'tv_series_id',
         'status',
         'rented_at',
@@ -45,6 +46,12 @@ class Rent extends Model
     {
         return $this->belongsToMany(Genres::class, 'genre_rent', 'rent_id', 'genre_id');
     }
+
+    public function item()
+    {
+        return $this->hasMany(Rent::class, 'rent_id');
+    }
+
 
 
     public function user()

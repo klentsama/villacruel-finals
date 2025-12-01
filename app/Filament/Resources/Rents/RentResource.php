@@ -40,7 +40,7 @@ class RentResource extends Resource
 
     protected static ?int $navigationSort = 4;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::BuildingStorefront;
 
     public static function form(Schema $schema): Schema
     {
@@ -74,7 +74,7 @@ class RentResource extends Resource
                                 ->prefix('USD')
                     ]),
 
-                    Section::make('Select Genre')->schema([
+                    Section::make('Select Genre and Type')->schema([
                         Select::make('genres')
                             ->multiple()
                             ->relationship('genres', 'name')
@@ -105,6 +105,8 @@ class RentResource extends Resource
                             
                             Toggle::make('on_sale')
                                 ->required(),
+
+                            
                         ]),
                     ])->columnSpan(1),
             ])->columns(3);
@@ -145,10 +147,6 @@ class RentResource extends Resource
                 IconColumn::make('is_popular')
                     ->boolean()
                     ->toggleable(isToggledHiddenByDefault:true),
-
-
-                TextColumn::make('status')
-                    ->sortable(),
                     
                 TextColumn::make('created_at')
                     ->dateTime()

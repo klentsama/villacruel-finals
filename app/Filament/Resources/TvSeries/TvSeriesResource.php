@@ -34,7 +34,7 @@ class TvSeriesResource extends Resource
 
     protected static ?int $navigationSort = 2;
 
-    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-tv';
+    protected static string|BackedEnum|null $navigationIcon = HeroIcon::Tv;
 
     public static function form(Schema $schema): Schema
     {

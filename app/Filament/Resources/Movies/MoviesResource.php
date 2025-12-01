@@ -36,7 +36,7 @@ class MoviesResource extends Resource
     protected static ?string $model = Movies::class;
     protected static ?int $navigationSort = 1;
 
-    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-film';
+    protected static string|BackedEnum|null $navigationIcon = HeroIcon::Film;
 
     public static function form(Schema $schema): Schema
     {

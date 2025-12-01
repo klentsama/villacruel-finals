@@ -33,7 +33,7 @@ class UserResource extends Resource
 
     protected static ?int $navigationSort = 5;
 
-    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-user-group';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::UserGroup;
 
     public static function form(Schema $schema): Schema
     {
@@ -74,7 +74,8 @@ class UserResource extends Resource
                     TextColumn::make('email_verified_at')
                         ->label('Email Verified At')
                         ->dateTime('M d, Y H:i A')
-                        ->sortable(),
+                        ->sortable()
+                        ->placeholder('Unverified'),
 
                     TextColumn::make('created_at')
                         ->label('Created At')

@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('rents', function (Blueprint $table) {
             $table->id();
             $table->foreignId('movie_id')->nullable()->constrained('movies')->cascadeOnDelete();
+            $table->foreignId('renter_id')->nullable()->constrained('renters')->cascadeOnDelete();
             $table->foreignId('tv_series_id')->nullable()->constrained('tv_series')->cascadeOnDelete();
-            $table->string('name');
-            $table->string('type');
+            $table->string('name')->nullable();
+            $table->string('type')->nullable();
             $table->json('images')->nullable();
             $table->longText('description')->nullable();
-            $table->decimal('price', 10, 2);
+            $table->decimal('price', 10, 2)->default(0);
             $table->boolean('is_active')->default(true);
             $table->boolean('is_popular')->default(false);
             $table->boolean('in_stock')->default(true);
@@ -32,12 +33,8 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+     public function down(): void
     {
-        Schema::table('rents', function (Blueprint $table) {
-            // Drop the foreign key constraint first, then the column
-            $table->dropForeign(['genre_id']);
-            $table->dropColumn('genre_id');
-        });
+        Schema::dropIfExists('rents');
     }
 };
